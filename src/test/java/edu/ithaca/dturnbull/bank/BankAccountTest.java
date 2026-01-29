@@ -24,17 +24,21 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
-        assertTrue(BankAccount.isEmailValid( "a@b.org"));   // valid email address
-        assertTrue(BankAccount.isEmailValid( "a-b@c.com"));   // valid email address
-        assertFalse(BankAccount.isEmailValid(""));         // empty string
-        assertFalse(BankAccount.isEmailValid("a@.com"));   // missing second-level domain name
-        assertFalse(BankAccount.isEmailValid("a@b"));      // missing top-level domain name
-        assertFalse(BankAccount.isEmailValid("@b.com"));   // missing local part (username)
-        assertFalse(BankAccount.isEmailValid("ab.com"));   // missing @ symbol
-        assertFalse(BankAccount.isEmailValid("a@b..com")); // double dot in domain name
-        assertFalse(BankAccount.isEmailValid("-@b.com"));  // local part starts with invalid character
-        assertFalse(BankAccount.isEmailValid("a@b#.com")); // invalid character in domain name       
+        assertFalse(BankAccount.isEmailValid("")); // empty string
+        assertTrue(BankAccount.isEmailValid( "callahan45@yahoo.com"));   // valid email address
+        assertTrue(BankAccount.isEmailValid( "omah@keyqaad.com"));   // valid email address
+        assertFalse(BankAccount.isEmailValid("mark")); // no @ symbol or domain
+        assertFalse(BankAccount.isEmailValid("mark@")); // no domain
+        assertFalse(BankAccount.isEmailValid("@yahoo.com")); // no local part
+        assertFalse(BankAccount.isEmailValid("mark@yahoo")); // no top-level domain
+        assertFalse(BankAccount.isEmailValid("mark@.com")); // no second-level domain
+        assertFalse(BankAccount.isEmailValid("mark@@yahoo.com")); // double @
+        assertFalse(BankAccount.isEmailValid("mark yahoo.com")); // space instead of @
+        assertFalse(BankAccount.isEmailValid(null)); // null string
+        assertFalse(BankAccount.isEmailValid("2mark@yahoo.com")); // local part starts with number
+        assertFalse(BankAccount.isEmailValid(".mark@yahoo.com")); // local part starts with special character
+        assertFalse(BankAccount.isEmailValid("mark@ya hoo.com")); // any spaces
+
     }
 
     @Test
