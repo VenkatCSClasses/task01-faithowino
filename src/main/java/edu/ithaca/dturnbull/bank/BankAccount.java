@@ -56,7 +56,7 @@ public class BankAccount {
         if (localPart.length() == 0 ){
             return false;
         }
-        if (!Character.isLetter(localPart.charAt(0))){ //checks first character of local part is a letter
+        if (!Character.isLetter(localPart.charAt(0)) && !Character.isDigit(localPart.charAt(0))){ //checks first character of local part is a letter or digit
             return false;
         }
 

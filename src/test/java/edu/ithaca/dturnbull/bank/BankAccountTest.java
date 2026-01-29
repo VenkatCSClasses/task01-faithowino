@@ -35,7 +35,7 @@ class BankAccountTest {
         assertFalse(BankAccount.isEmailValid("mark@@yahoo.com")); // double @
         assertFalse(BankAccount.isEmailValid("mark yahoo.com")); // space instead of @
         assertFalse(BankAccount.isEmailValid(null)); // null string
-        assertFalse(BankAccount.isEmailValid("2mark@yahoo.com")); // local part starts with number
+        assertTrue(BankAccount.isEmailValid("2mark@yahoo.com")); // local part starts with number
         assertFalse(BankAccount.isEmailValid(".mark@yahoo.com")); // local part starts with special character
         assertFalse(BankAccount.isEmailValid("mark@ya hoo.com")); // any spaces
     }
