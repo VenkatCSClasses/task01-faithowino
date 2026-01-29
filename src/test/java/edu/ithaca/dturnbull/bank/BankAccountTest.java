@@ -25,9 +25,16 @@ class BankAccountTest {
     @Test
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
-        assertFalse( BankAccount.isEmailValid(""));         // empty string
-
-        
+        assertTrue(BankAccount.isEmailValid( "a@b.org"));   // valid email address
+        assertTrue(BankAccount.isEmailValid( "a-b@c.com"));   // valid email address
+        assertFalse(BankAccount.isEmailValid(""));         // empty string
+        assertFalse(BankAccount.isEmailValid("a@.com"));   // missing second-level domain name
+        assertFalse(BankAccount.isEmailValid("a@b"));      // missing top-level domain name
+        assertFalse(BankAccount.isEmailValid("@b.com"));   // missing local part (username)
+        assertFalse(BankAccount.isEmailValid("ab.com"));   // missing @ symbol
+        assertFalse(BankAccount.isEmailValid("a@b..com")); // double dot in domain name
+        assertFalse(BankAccount.isEmailValid("-@b.com"));  // local part starts with invalid character
+        assertFalse(BankAccount.isEmailValid("a@b#.com")); // invalid character in domain name       
     }
 
     @Test
@@ -39,14 +46,6 @@ class BankAccountTest {
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
     }
-    @Test
-    void constructorTest2() {
-        BankAccount bankAccount = new BankAccount("a@b.com", 200);
-
-        assertEquals("a@b.com", bankAccount.getEmail());
-        assertEquals(200, bankAccount.getBalance(), 0.001);
-        //check for exception thrown correctly
-        assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
-    }
+   
 
 }
