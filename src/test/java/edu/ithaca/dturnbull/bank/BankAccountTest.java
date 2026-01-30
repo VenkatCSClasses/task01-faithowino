@@ -24,20 +24,25 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertFalse(BankAccount.isEmailValid("")); // empty string
-        assertTrue(BankAccount.isEmailValid( "callahan45@yahoo.com"));   // valid email address
-        assertTrue(BankAccount.isEmailValid( "omah@keyqaad.com"));   // valid email address
-        assertFalse(BankAccount.isEmailValid("mark")); // no @ symbol or domain
-        assertFalse(BankAccount.isEmailValid("mark@")); // no domain
-        assertFalse(BankAccount.isEmailValid("@yahoo.com")); // no local part
-        assertFalse(BankAccount.isEmailValid("mark@yahoo")); // no top-level domain
-        assertFalse(BankAccount.isEmailValid("mark@.com")); // no second-level domain
-        assertFalse(BankAccount.isEmailValid("mark@@yahoo.com")); // double @
-        assertFalse(BankAccount.isEmailValid("mark yahoo.com")); // space instead of @
-        assertFalse(BankAccount.isEmailValid(null)); // null string
-        assertTrue(BankAccount.isEmailValid("2mark@yahoo.com")); // local part starts with number
-        assertFalse(BankAccount.isEmailValid(".mark@yahoo.com")); // local part starts with special character
-        assertFalse(BankAccount.isEmailValid("mark@ya hoo.com")); // any spaces
+        assertFalse(BankAccount.isEmailValid("")); // empty string //boundary case
+        assertTrue(BankAccount.isEmailValid( "callahan45@yahoo.com"));   // valid email address //equivalence class
+        assertTrue(BankAccount.isEmailValid( "omah@keyqaad.com"));   // valid email address //equivalence class
+        assertFalse(BankAccount.isEmailValid("mark")); // no @ symbol or domain //equivalence class
+        assertFalse(BankAccount.isEmailValid("mark@")); // no domain //equivalence class
+        assertFalse(BankAccount.isEmailValid("@yahoo.com")); // no local part //equivalence class
+        assertFalse(BankAccount.isEmailValid("mark@yahoo")); // no top-level domain //equivalence class
+        assertFalse(BankAccount.isEmailValid("mark@.com")); // no second-level domain //equivalence class
+        assertFalse(BankAccount.isEmailValid("mark@@yahoo.com")); // double @ //equivalence class
+        assertFalse(BankAccount.isEmailValid("mark yahoo.com")); // space instead of @ //equivalence class
+        assertFalse(BankAccount.isEmailValid(null)); // null string //boundary case
+        assertTrue(BankAccount.isEmailValid("2mark@yahoo.com")); // local part starts with number //equivalence class
+        assertFalse(BankAccount.isEmailValid(".mark@yahoo.com")); // local part starts with special character //equivalence class
+        assertFalse(BankAccount.isEmailValid("mark@ya hoo.com")); // any spaces //equivalence class
+        // equivalence class test missing: local part starts with special character other than '.'
+        assertFalse(BankAccount.isEmailValid("$mark@yahoo.com"));
+        // equivalence class test missing: second level domain starts with special character
+        assertFalse(BankAccount.isEmailValid("mark@.yahoo.com"));
+        assertFalse(BankAccount.isEmailValid("mark@#yahoo.com"));
     }
 
     @Test
