@@ -18,8 +18,30 @@ class BankAccountTest {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
         bankAccount.withdraw(100);
 
-        assertEquals(100, bankAccount.getBalance(), 0.001);
-        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300));
+        assertEquals(100, bankAccount.getBalance(), 0.001); // valid equivalence class
+        assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); //invalid equivalence class
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-50)); // invalid equivalence class
+
+        BankAccount bankAccount2 = new BankAccount("c@b.com", 500);
+        bankAccount2.withdraw(200);
+
+        assertEquals(300, bankAccount2.getBalance(), 0.001); // valid equivalence class
+        
+
+        assertThrows(IllegalArgumentException.class, () -> bankAccount2.withdraw(0)); // boundary case
+
+        BankAccount bankAccount3 = new BankAccount("d@e.com", 1000);
+        bankAccount3.withdraw(10001);
+
+        assertEquals(500, bankAccount3.getBalance(), 0.001); // valid equivalence class
+    
+
+        
+
+
+
+
+
     }
 
     @Test
