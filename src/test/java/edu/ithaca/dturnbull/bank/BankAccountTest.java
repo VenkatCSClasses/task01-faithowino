@@ -10,15 +10,15 @@ class BankAccountTest {
     void getBalanceTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
-        assertEquals(200, bankAccount.getBalance(), 0.001); // valid equivalence class
+        assertEquals(200, bankAccount.getBalance(), 0.001); // valid equivalence class check the balance after creation
 
-        BankAccount bankAccount2 = new BankAccount("f@g.com", 0);
+        BankAccount bankAccount2 = new BankAccount("f@g.com", 0); //checks you can make a bank account with 0 starting balance
         assertEquals(0, bankAccount2.getBalance(), 0.001); // boundary case
 
-        BankAccount bankAccount3 = new BankAccount("h@i.com", 1000.50);
+        BankAccount bankAccount3 = new BankAccount("h@i.com", 1000.50); //checks you can make a bank account with decimal starting balance
         assertEquals(1000.50, bankAccount3.getBalance(), 0.001); // valid equivalence class
 
-        BankAccount bankAccount4 = new BankAccount("y@o.com", -50);
+        BankAccount bankAccount4 = new BankAccount("y@o.com", -50); //accounts for human error (changes -50 to 50)
         assertEquals(-50, bankAccount4.getBalance(), 0.001); // valid equivalence class
 
         //getBalance on its own has no invalid equivalence classes because there are no inputs
