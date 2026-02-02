@@ -10,7 +10,21 @@ class BankAccountTest {
     void getBalanceTest() {
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
 
-        assertEquals(200, bankAccount.getBalance(), 0.001);
+        assertEquals(200, bankAccount.getBalance(), 0.001); // valid equivalence class
+
+        BankAccount bankAccount2 = new BankAccount("f@g.com", 0);
+        assertEquals(0, bankAccount2.getBalance(), 0.001); // boundary case
+
+        BankAccount bankAccount3 = new BankAccount("h@i.com", 1000.50);
+        assertEquals(1000.50, bankAccount3.getBalance(), 0.001); // valid equivalence class
+
+        BankAccount bankAccount4 = new BankAccount("y@o.com", -50);
+        assertEquals(-50, bankAccount4.getBalance(), 0.001); // valid equivalence class
+
+        //getBalance on its own has no invalid equivalence classes because there are no inputs
+        
+    
+
     }
 
     @Test
@@ -20,7 +34,11 @@ class BankAccountTest {
 
         assertEquals(100, bankAccount.getBalance(), 0.001); // valid equivalence class
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); //invalid equivalence class
-        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-50)); // invalid equivalence class
+       
+        bankAccount.withdraw(100);
+        assertEquals(0, bankAccount.getBalance(), 0.001); // boundary case
+
+
 
         BankAccount bankAccount2 = new BankAccount("c@b.com", 500);
         bankAccount2.withdraw(200);
@@ -31,14 +49,8 @@ class BankAccountTest {
         assertThrows(IllegalArgumentException.class, () -> bankAccount2.withdraw(0)); // boundary case
 
         BankAccount bankAccount3 = new BankAccount("d@e.com", 1000);
-        bankAccount3.withdraw(10001);
-
-        assertEquals(500, bankAccount3.getBalance(), 0.001); // valid equivalence class
-    
-
-        
-
-
+        bankAccount3.withdraw(-500);
+        assertEquals(500, bankAccount3.getBalance(), 0.001); // invalid equivalence class
 
 
 

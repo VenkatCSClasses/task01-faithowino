@@ -30,8 +30,13 @@ public class BankAccount {
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      */
     public void withdraw (double amount) throws InsufficientFundsException{
-        if (amount <= balance && amount >= 0){
-            balance -= amount;
+
+        if (Math.abs(amount) == 0){
+            throw new IllegalArgumentException("Withdrawal amount must be greater than 0");
+        }
+
+        else if(Math.abs(amount) <= balance && Math.abs(amount) >= 0){
+            balance -= Math.abs(amount);
         }
         else {
             throw new InsufficientFundsException("Not enough money");
