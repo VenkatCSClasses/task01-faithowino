@@ -52,7 +52,14 @@ class BankAccountTest {
         bankAccount3.withdraw(-500);
         assertEquals(500, bankAccount3.getBalance(), 0.001); // invalid equivalence class
 
+        BankAccount bankAccount4 = new BankAccount("d@e.com", 1000);
+        assertThrows(IllegalArgumentException.class, () -> bankAccount4.withdraw(500.678)); // inavalid equivalence class amount with more than 2 decimal places
+        bankAccount4.withdraw(50.50);
+        assertEquals(949.50, bankAccount4.getBalance(), 0.001); // valid equivalence class amount with 2 decimal places
+
         
+        
+
         
 
 
