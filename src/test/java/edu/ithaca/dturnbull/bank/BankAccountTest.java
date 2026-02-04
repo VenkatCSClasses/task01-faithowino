@@ -103,7 +103,7 @@ class BankAccountTest {
 
 
         assertFalse(BankAccount.isAmountValid(-50)); // invalid equivalence class
-        assertFalse(BankAccount.isAmountValid(-50.01)); // invalid equivalence classb
+        assertFalse(BankAccount.isAmountValid(-50.01)); // invalid equivalence class
     }
 
   
