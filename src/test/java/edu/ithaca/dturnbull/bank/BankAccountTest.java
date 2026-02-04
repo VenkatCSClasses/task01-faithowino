@@ -126,6 +126,43 @@ class BankAccountTest {
         assertFalse(BankAccount.isAmountValid(-50.01)); // invalid equivalence class
     }
 
+    @Test
+    void depositTest(){
+        BankAccount bankAccount = new BankAccount("a@b.com", 200);
+        bankAccount.deposit(100);
+        assertEquals(300, bankAccount.getBalance(), 0.001); // valid equivalence class
+        bankAccount.deposit(50.75);
+        assertEquals(350.75, bankAccount.getBalance(), 0.001); // valid equivalence class
+        bankAccount.deposit(0.01);
+        assertEquals(350.76, bankAccount.getBalance(), 0.001); // boundary case
+
+        bankAccount.deposit(99.99);
+        assertEquals(450.75, bankAccount.getBalance(), 0.001); // valid equivalence class
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(0)); // boundary case amount is invalid
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(-20)); // invalid equivalence class amount is invalid
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.deposit(30.678)); // invalid equivalence class amount with more than 2 decimal places
+
+    }
+
+    @Test
+    void transferToTest() throws InsufficientFundsException{
+        BankAccount bankAccount1 = new BankAccount("a@b.com", 5000);
+        BankAccount bankAccount2 = new BankAccount("d@e.com", 200);
+        BankAccount bankAccount3 = new BankAccount("f@g.com", 100);
+
+        bankAccount1.transferTo(bankAccount2, 1000);
+        assertEquals(4000, bankAccount1.getBalance(), 0.001); // valid equivalence class
+        assertEquals(1200, bankAccount2.getBalance(), 0.001); // valid equivalence class
+        bankAccount2.transferTo(bankAccount3, 200);
+        assertEquals(1000, bankAccount2.getBalance(), 0.001); // valid equivalence class
+        assertEquals(300, bankAccount3.getBalance(), 0.001); // valid equivalence class
+
+        assertThrows(InsufficientFundsException.class, () -> bankAccount3.transferTo(bankAccount1, 500)); // invalid equivalence class 
+        assertThrows(IllegalArgumentException.class, () -> bankAccount1.transferTo(bankAccount2, 0)); // boundary case amount is invalid
+        assertThrows(IllegalArgumentException.class, () -> bankAccount2.transferTo(bankAccount3, -50)); // invalid equivalence class amount is invalid
+        assertThrows(IllegalArgumentException.class, () -> bankAccount1.transferTo(bankAccount3, 100.789)); // invalid equivalence class amount with more than 2 decimal places
+
+
   
    
 

@@ -16,7 +16,7 @@ public class BankAccount {
         else {
             throw new IllegalArgumentException("Email address: " + email + " is invalid, cannot create account");
         }
-        
+
         if (isAmountValid(startingBalance))
             this.balance = startingBalance;
         else {
@@ -107,6 +107,15 @@ public class BankAccount {
         double remainder = scaledAmount - (long) scaledAmount;
        
         return remainder < 0.001;
+       
+    }
+
+    public void deposit(double amount){
+     
+        
+    }
+
+    public void transferTo(BankAccount other, double amount) throws InsufficientFundsException{
        
     }
 
