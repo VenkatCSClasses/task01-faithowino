@@ -52,6 +52,8 @@ class BankAccountTest {
         bankAccount3.withdraw(-500);
         assertEquals(500, bankAccount3.getBalance(), 0.001); // invalid equivalence class
 
+        
+        
 
 
     }
@@ -90,6 +92,14 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance(), 0.001);
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+
+        assertThrows(IllegalArgumentException.class, () -> new BankAccount("d@b.com", 300.567)); // invalid equivalence class amount with more than 2 decimal places
+        assertThrows(IllegalArgumentException.class, () -> new BankAccount("d@b.com", 300.550)); // boundary case amount with 3 decimal places but last is 0
+        assertThrows(IllegalArgumentException.class, () -> new BankAccount("d@b.com", 0)); // valid equivalence class amount of 0
+          assertThrows(IllegalArgumentException.class, () -> new BankAccount("d@b.com", 90)); // valid equivalence 
+            assertThrows(IllegalArgumentException.class, () -> new BankAccount("d@b.com", -100.56)); // invalid equivalence class 
+
+    }
     }
 
     @Test
