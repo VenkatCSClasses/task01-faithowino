@@ -5,6 +5,7 @@ public class BankAccount {
     private String email;
     private double balance;
 
+
     /**
      * @throws IllegalArgumentException if email is invalid
      */
@@ -93,7 +94,15 @@ public class BankAccount {
     }
 
     public static boolean isAmountValid(double amount){
-       return false;
+
+        if (amount <= 0){
+            return false;
+        } 
+        double scaledAmount = amount * 100;
+        double remainder = scaledAmount - (long) scaledAmount;
+       
+        return remainder < 0.001;
+       
     }
 
     

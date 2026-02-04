@@ -94,20 +94,19 @@ class BankAccountTest {
 
     @Test
     void isAmountValidTest(){
-        assertFalse(BankAccount.isAmountValid(100), 0.01); // invalid equivalence class
-        assertTrue(BankAccount.isAmountValid(100.00), 0.01); // valid equivalence class
-        assertTrue(BankAccount.isAmountValid(50.75), 0.01); // valid equivalence class
+        assertTrue(BankAccount.isAmountValid(100)); // valid equivalence class
+        assertTrue(BankAccount.isAmountValid(100.00)); // valid equivalence class
+        assertTrue(BankAccount.isAmountValid(50.75)); // valid equivalence class
 
-        assertFalse(BankAccount.isAmountValid(0), 0.01); // boundary case
-        assertFalse(BankAccount.isAmountValid(0.00), 0.01); // boundary case
+        assertFalse(BankAccount.isAmountValid(0)); // boundary case
+        assertFalse(BankAccount.isAmountValid(0.00)); // boundary case
 
 
-        assertFalse(BankAccount.isAmountValid(-50), 0.01); // invalid equivalence class
-        assertFalse(BankAccount.isAmountValid(-50.01), 0.01); // invalid equivalence class
+        assertFalse(BankAccount.isAmountValid(-50)); // invalid equivalence class
+        assertFalse(BankAccount.isAmountValid(-50.01)); // invalid equivalence classb
     }
 
   
-    
    
 
 }
