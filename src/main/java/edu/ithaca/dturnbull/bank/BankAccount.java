@@ -111,11 +111,25 @@ public class BankAccount {
     }
 
     public void deposit(double amount){
+        if (!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot deposit");
+        }         
+        else {
+            balance += amount;
+        }   
      
         
     }
 
     public void transferTo(BankAccount other, double amount) throws InsufficientFundsException{
+        if(!isAmountValid(amount)){
+            throw new IllegalArgumentException("Amount: " + amount + " is invalid, cannot transfer");
+        }
+        if (amount > this.balance){
+            throw new InsufficientFundsException("Not enough money to transfer");
+        }
+        this.withdraw(amount);
+        other.deposit(amount);  
        
     }
 
